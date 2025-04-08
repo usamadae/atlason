@@ -2,6 +2,19 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/header";
 import Footer from './components/footer/footer.jsx';
+import { Inter, Poppins } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-inter',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-poppins',
+});
 
 
 const geistSans = Geist({
@@ -31,11 +44,11 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet"></link>
+  
       </head>
 
       <body
-        className='antialiased'
+       className={`${inter.variable} ${poppins.variable}`}
       >
         <Header/>
         {children}
