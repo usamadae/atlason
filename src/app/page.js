@@ -4,6 +4,10 @@ import GeneralInstruction from "./components/Homepage/GernalInstruction";
 import FeaturedCourses from "./components/Homepage/FeaturedCourses";
 import RecommendedCourses from "./components/Homepage/RecommendedCourses";
 import Learner from "./components/Homepage/Learner";
+import Testimonial from "./components/Homepage/Testimonial";
+import FocusOnYourGoal from "./components/Homepage/FocusOnYourGoal";
+import StartLearning from "./components/Homepage/StartLearning";
+import LatestNews from "./components/Homepage/LatestNews";
 
 export default function Home() {
   return (
@@ -13,6 +17,10 @@ export default function Home() {
 <FeaturedCourses/>
 <RecommendedCourses/>
 <Learner/>
+<Testimonial/>
+<FocusOnYourGoal/>
+<StartLearning/>
+<LatestNews/>
 </>
   );
 }
