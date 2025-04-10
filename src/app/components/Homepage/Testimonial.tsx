@@ -68,17 +68,17 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <div className="w-full container mx-auto py-12 pb-[120px] px-4">
-      <div className="flex flex-col md:flex-row gap-8 items-center">
+    <div className="w-full container mx-auto py-12 xl:pb-[120px] lg:pb-[60px] pb-[40px] px-4">
+      <div className="flex flex-col lg:flex-row gap-8 items-center">
         {/* Left content */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full lg:w-1/2 lg:text-left text-center">
           <div className="mb-4">
-            <h3 className="uppercase text-[24px] font-bold font-inter tracking-wider ">TESTIMONIAL</h3>
+            <h3 className="uppercase xl:text-[24px] text-[22px] font-bold font-inter tracking-wider ">TESTIMONIAL</h3>
 
 
 
-            <div className="text-left mb-8">
-              <h2 className="text-[52px] font-bold font-inter inline-block">
+            <div className="lg:text-left text-center mb-8">
+              <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px]  font-bold font-inter inline-block">
                 <span className="text-black relative">What They {" "}
                   <div className="absolute bottom-[1px] left-0 w-full h-1 ">
                     <Image
@@ -96,7 +96,7 @@ const Testimonial = () => {
               </h2>
             </div>          </div>
 
-          <p className="font-inter text-[20px] leading-[34px] font-semibold mb-8">
+          <p className="font-inter xl:text-[20px] text-[16px] xl:leading-[34px] leading-[24px] font-semibold mb-8">
             Lorem ipsum is simply dummy text of the printing and typesetting industry.
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
             when an unknown printer took a galley of type and scrambled it to make a type
@@ -104,7 +104,7 @@ const Testimonial = () => {
             electronic typesetting.
           </p>
 
-          <button className="flex items-center border group cursor-pointer border-[#3DB765]  rounded-full px-5 py-3 hover:bg-[#3DB765] transition-colors">
+          <button className="flex items-center border group cursor-pointer mx-auto lg:mx-0 border-[#3DB765]  rounded-full px-5 py-3 hover:bg-[#3DB765] transition-colors">
             <span className="mr-2 text-[#3DB765] font-semibold font-inter text-[20px] group-hover:text-white  ">Write Your Assessment</span>
             <span className="w-5 h-5 flex items-center justify-center rounded-full bg-[#3DB765] text-white">
               <ChevronRight />
@@ -113,10 +113,10 @@ const Testimonial = () => {
         </div>
 
         {/* Right content - Testimonial Slider */}
-        <div className="w-full md:w-1/2 relative">
+        <div className="w-full lg:w-1/2 relative">
           <div className="rounded-lg ">
             {/* Image */}
-            <div className="relative h-[750px] w-[600px]">
+            <div className="relative xl:h-[750px] xl:w-[600px] lg:w-[500px] h-[500px]">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
@@ -126,7 +126,7 @@ const Testimonial = () => {
                   <img
                     src={testimonial.image || "/api/placeholder/400/320"}
                     alt={`Testimonial by ${testimonial.name}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
               ))}
@@ -147,7 +147,7 @@ const Testimonial = () => {
             </div>
 
             {/* Testimonial text */}
-            <div className="absolute bottom-[-100px] left-[75px] p-10 bg-white -mt-6 ml-6 mr-6 md:ml-12 shadow-lg border-l-10 rounded-[10px] border-[#3DB765]">
+            <div className="xl:absolute relative xl:bottom-[-100px]  top:0 xl:left-[75px] left-0 xl:w-auto m-0 w-full xl:p-10 p-5 bg-white -mt-6  shadow-lg border-l-10 rounded-[10px] border-[#3DB765]">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={`text-${testimonial.id}`}

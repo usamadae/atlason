@@ -10,10 +10,10 @@ import Link from 'next/link';
 const Footer = () => {
     return (
         <>
-        <footer className='bg-[#F7F7F7] py-[60px]'>
-            <div className="container mx-auto">
-                <div className="flex">
-                    <div className="w-[32%] ">
+        <footer className='bg-[#F7F7F7] md:py-[60px] py-[40px]'>
+            <div className="container mx-auto px-5">
+                <div className="flex lg:flex-nowrap flex-wrap gap-y-5">
+                    <div className="w-full lg:w-[32%] ">
 
 
                         <Link href="/">
@@ -46,16 +46,16 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="w-[17%]">
+                    <div className="lg:w-[17%] md:w-[25%] w-[50%]">
                     <TopCategories />
                     </div>
-                    <div className="w-[17%]">
+                    <div className="lg:w-[17%] md:w-[25%] w-[50%]">
                     <QuickLinks />
                     </div>
-                    <div className="w-[17%]">
+                    <div className="lg:w-[17%] md:w-[25%] w-[50%]">
                     <Support/>
                     </div>
-                    <div className="w-[17%]">
+                    <div className="lg:w-[17%] md:w-[25%] w-[50%]">
                   <OurApp/>
                     </div>
                 </div>

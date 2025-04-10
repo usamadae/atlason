@@ -15,21 +15,21 @@ const GeneralInstruction = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-[80px]">
+    <div className="container mx-auto px-4 xl:py-[80px] md:py-[60px]">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8">
         {/* Left side content */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full md:w-1/2 text-center md:text-left">
           <div className="relative mb-4">
-            <div className="absolute -left-10 top-0 w-20 h-20 rounded-full bg-[#3DB765]"></div>
-            <h2 className="text-[48px] font-inter font-bold relative z-10 mb-3">
+            <div className="absolute -left-10 top-0 xl:w-20 xl:h-20 lg:w-15 lg:h-15 rounded-full bg-[#3DB765]"></div>
+            <h2 className="xl:text-[48px] lg:text-[28px] text-center md:text-left text-[22px] font-inter font-bold relative z-10 mb-3">
               Lorem Ipsum is simply dummy text of the{' '}
               <span className="text-[#3DB765]">printing and typesetting industry.</span>
             </h2>
           </div>
-          <p className="text-black font-poppins text-[24px] leading-[42px] mb-6">
+          <p className="text-black font-poppins text-center md:text-left xl:text-[24px] lg:text-[20px] text-[18px] lg:leading-[42px] leading-[36px] mb-6">
             Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s
           </p>
-          <button className="bg-[#3DB765] cursor-pointer text-white text-[18px] font-semibold px-8 py-3 hover:bg-black transition">
+          <button className="bg-[#3DB765] cursor-pointer text-white lg:text-[18px] md:text-[16px] font-semibold px-8 py-3 hover:bg-black transition">
             Learn More
           </button>
         </div>

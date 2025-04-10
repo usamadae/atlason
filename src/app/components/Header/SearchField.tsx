@@ -13,8 +13,8 @@ const SearchField = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex font-inter items-center w-full max-w-md border gap-x-5 border-black py-3 px-4">
-         <button type="submit" className="ml-2">
+    <form onSubmit={handleSearch} className="flex font-inter items-center w-full lg:max-w-md border gap-x-5 border-black py-3 px-4">
+         <button type="submit" className="ml-2 contents">
         <Image
           src="/images/search-icon.png"
           alt="Search"

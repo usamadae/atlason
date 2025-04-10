@@ -69,9 +69,9 @@ const RecommendedCourses = () => {
     ];
 
     return (
-        <section className="py-[60px] px-4 container mx-auto">
-            <div className="text-center mb-12">
-                <h2 className="text-[52px] mb-5 font-bold font-inter inline-block">
+        <section className="md:py-[60px] py-[40px] px-4 container mx-auto">
+            <div className="text-center md:mb-12 mb-5">
+                <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] mb-5 font-bold font-inter inline-block">
                     Recommended <span className="text-[#3DB765] relative">Courses
                         <div className="absolute bottom-[1px] left-0 w-full h-1 ">
                             <Image
@@ -88,10 +88,10 @@ const RecommendedCourses = () => {
                 </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {courses.map((course) => (
                     <div key={course.id} className="bg-white rounded-lg shadow-sm border border-gray-100 flex overflow-hidden p-[20px]">
-                        <div className="relative w-40 h-40 flex-shrink-0">
+                        <div className="relative md:w-40 w-[40%] xl:h-40 h-full flex-shrink-0">
                             <Image
                                 src={course.image}
                                 alt={course.title}
@@ -100,9 +100,9 @@ const RecommendedCourses = () => {
                             />
                         </div>
                         <div className="p-4 flex flex-col flex-grow">
-                            <div className="mb-1 flex justify-between">
+                            <div className="mb-1 flex justify-between md:flex-row flex-col gap-y-2">
                                 <div>
-                                    <span className="bg-black text-white text-[10px] font-medium px-2 py-1 uppercase font-inter ">
+                                    <span className="bg-black text-white xl:text-[10px] text-[8px] font-medium px-2 py-1 uppercase font-inter ">
                                         {course.category}
                                     </span>
                                 </div>
@@ -144,7 +144,7 @@ const RecommendedCourses = () => {
                             </div>
 
 
-                            <div className="flex justify-between items-center mt-3 pt-3 border-t border-black text-xs text-gray-600">
+                            <div className="flex justify-between items-center mt-3 pt-3 xl:flex-nowrap flex-wrap gap-y-3 border-t border-black text-xs text-gray-600">
                                 <div className="flex items-center">
                                     {/* Users icon */}
 
@@ -156,7 +156,7 @@ const RecommendedCourses = () => {
                                     <span className="ml-1 font-inter text-[14px] font-medium text-black"><span className='font-semibold'>{course.students}</span> students</span>
                                 </div>
 
-                                <div className="flex items-center mx-4">
+                                <div className="flex items-center xl:mx-4">
                                     {/* Level icon */}
 
                                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -46,9 +46,9 @@ const FeaturedCourses = () => {
     ];
 
     return (
-        <section className="py-[60px] px-4 container mx-auto">
-            <div className="text-center mb-12">
-                <h2 className="text-[52px] font-bold font-inter inline-block">
+        <section className="xl:py-[60px] md:py-[40px] py-[60px] md:pb-[40px] pb-[20px] px-4 container mx-auto">
+            <div className="text-center md:mb-12 mb-5">
+                <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] font-bold font-inter inline-block">
                     Featured <span className="text-[#3DB765] relative">Courses
                         <div className="absolute bottom-[1px] left-0 w-full h-1 ">
                             <Image
@@ -68,7 +68,7 @@ const FeaturedCourses = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {courses.map((course) => (
                     <div key={course.id} className="bg-white cursor-pointer rounded-lg shadow-md overflow-hidden p-[20px]">
-                        <div className="relative h-48 w-full">
+                        <div className="relative xl:h-48 lg:h-40 md:h-50 h-60 w-full">
                             <Image
                                 src="/images/course-images.png"
                                 alt={course.title}
@@ -77,7 +77,7 @@ const FeaturedCourses = () => {
                             />
                         </div>
                         <div className="py-4">
-                            <div className='flex justify-between'>
+                            <div className='flex justify-between '>
                                 <div className="uppercase text-[10px] inline-block bg-[#E3E3E3] font-semibold text-[#1D1F22] py-1 px-3 mb-1">
                                     {course.category}
                                 </div>
@@ -116,7 +116,7 @@ const FeaturedCourses = () => {
             </div>
 
             <div className="flex justify-center mt-12">
-                <Link href="/courses" className="flex items-center bg-[#3DB765] hover:bg-black text-[16px] font-inter font-semibold text-white px-6 py-3 transition-colors">
+                <Link href="/courses" className="flex items-center bg-[#3DB765] hover:bg-black md:text-[16px] text-[14px] font-inter font-semibold text-white px-6 py-3 transition-colors">
                     Browse All Courses
                    
 <svg className='ps-2' width="30" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">

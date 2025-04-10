@@ -146,10 +146,10 @@ const FocusOnYourGoal = () => {
     );
 
     return (
-        <div className="container mx-auto py-[70px]">
+        <div className="container mx-auto px-4 lg:py-[70px] md:py-[60px] py-[40px]">
             {/* Heading with green underlines */}
-            <div className="text-center mb-20">
-                <h2 className="text-[52px] font-bold font-inter inline-block">
+            <div className="text-center lg:mb-20 mb-10">
+                <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px]  font-bold font-inter inline-block">
                     <span className="text-[#3DB765] relative">Learning {" "}
                         <div className="absolute bottom-[1px] left-0 w-full h-1 ">
                             <Image
@@ -178,7 +178,7 @@ const FocusOnYourGoal = () => {
                 </h2>
             </div>
             {/* Grid layout for content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-10 md:gap-5">
                 {/* Left column - Learning items (tabs) */}
                 <div className="space-y-4">
                     {tabItems.map((item, index) => (
@@ -194,8 +194,8 @@ const FocusOnYourGoal = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold  text-[22px] font-inter">{item.title}</h3>
-                                    <p className="text-[18px] font-inter font-medium">
+                                    <h3 className="font-bold  xl:text-[22px] lg:text-[20px] md:text-[18px] font-inter">{item.title}</h3>
+                                    <p className="xl:text-[18px] lg:text-[16px] md:text-[14px] font-inter font-medium">
                                         {item.content}
                                     </p>
                                 </div>
@@ -208,11 +208,11 @@ const FocusOnYourGoal = () => {
                 <div className="md:col-span-1">
                     <div className="border-3 border-gray-200 rounded-[25px] py-5 h-full shadow-lg bg-white">
                         <div className='py-5 pb-7'>
-                            <h4 className='text-center font-inter font-bold text-[24px]'>Lorem Ipsum is simply dummy text </h4>
+                            <h4 className='text-center font-inter font-bold xl:text-[24px] lg:text-[22px] md:text-[18px]'>Lorem Ipsum is simply dummy text </h4>
                         </div>
                         {/* Score header */}
                         <div className="bg-green-50 rounded-lg p-4 mb-4">
-                            <h2 className="text-[60px] font-inter font-black text-[#3DB765] text-center">Your Score</h2>
+                            <h2 className="xl:text-[60px] text-[40px] font-inter font-black text-[#3DB765] text-center">Your Score</h2>
                         </div>
 
                         {/* Score number */}

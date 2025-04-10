@@ -39,9 +39,9 @@ const Learner = () => {
   ];
 
   return (
-    <section className="py-[60px] px-4 container mx-auto">
-         <div className="text-center mb-12">
-                      <h2 className="text-[52px] font-bold font-inter inline-block">
+    <section className="lg:py-[60px] py-[40px] md:pt-[40px] pt-[20px] px-4 container mx-auto">
+         <div className="text-center md:mb-12 mb-8">
+                      <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] font-bold font-inter inline-block">
                       Learners Are <span className="text-[#3DB765] relative">Viewing
                               <div className="absolute bottom-[1px] left-0 w-full h-1 ">
                                   <Image
@@ -58,10 +58,10 @@ const Learner = () => {
                       </h2>
                   </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {courses.map((course) => (
           <div key={course.id} className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-            <div className="relative h-48 w-full p-10">
+            <div className="relative xl:h-48 lg:h-40 h-60 w-full p-10">
               <Image
                 src={course.image}
                 alt={course.title}
@@ -98,7 +98,7 @@ const Learner = () => {
               </div>
               
               <div className="flex items-center justify-between">
-                <span className="font-bold font-inter text-[29px]">${course.price.toFixed(2)}</span>
+                <span className="font-bold font-inter xl:text-[29px] text-[24px]">${course.price.toFixed(2)}</span>
                 <button className="bg-[#3DB765] text-[14px] hover:bg-black text-white font-semibold px-3 py-1 cursor-pointer transition-colors">
                   Enroll
                 </button>
