@@ -178,7 +178,7 @@ const FocusOnYourGoal = () => {
                 </h2>
             </div>
             {/* Grid layout for content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-10 md:gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-10 md:gap-5 gap-5">
                 {/* Left column - Learning items (tabs) */}
                 <div className="space-y-4">
                     {tabItems.map((item, index) => (
