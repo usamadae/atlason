@@ -47,7 +47,7 @@ const BrowseCategory = () => {
       {/* Dropdown Menu */}
       <button
         onClick={toggleDropdown}
-        className="ps-3 pr-20 py-[10.8px] bg-white-500 border-1 text-black text-[16px] font-inter  focus:outline-none"
+        className="ps-3 pr-20 py-[10.8px] bg-white-500 border-1 text-black text-[16px] font-inter w-full focus:outline-none"
       >
         Browse 
       </button>

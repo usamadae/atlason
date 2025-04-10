@@ -30,19 +30,19 @@ const Footer = () => {
                         <div className="social">
 
                             <a href="#">
-                                <i class="fa-brands fa-facebook-f"></i>
+                                <i className="fa-brands fa-facebook-f"></i>
                             </a>
                             <a href="#">
-                                <i class="fa-brands fa-instagram"></i>
+                                <i className="fa-brands fa-instagram"></i>
                             </a>
                             <a href="#">
-                                <i class="fa-brands fa-linkedin-in"></i>
+                                <i className="fa-brands fa-linkedin-in"></i>
                             </a>
                             <a href="#">
-                                <i class="fa-brands fa-square-twitter"></i>
+                                <i className="fa-brands fa-square-twitter"></i>
                             </a>
                             <a href="#">
-                                <i class="fa-brands fa-youtube"></i>
+                                <i className="fa-brands fa-youtube"></i>
                             </a>
                         </div>
                     </div>

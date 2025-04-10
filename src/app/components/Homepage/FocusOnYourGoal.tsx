@@ -243,7 +243,7 @@ const FocusOnYourGoal = () => {
                         <div className="space-y-2">
                             {scoreData[activeTab].questions.map((question, idx) => (
                                 <div key={idx} className="mb-2">
-                                    <h4 className="text-[16px] font-medium leading-[28px] font-inter text-black font-semibold">Question {String.fromCharCode(65 + idx)}</h4>
+                                    <h4 className="text-[16px] leading-[28px] font-inter text-black font-semibold">Question {String.fromCharCode(65 + idx)}</h4>
                                     <p className="text-[16px] font-medium leading-[28px] font-inter text-black ">{question}</p>
                                 </div>
                             ))}

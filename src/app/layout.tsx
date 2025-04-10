@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/header";
-import Footer from './components/footer/footer.jsx';
+import Footer from './components/footer/footer';
 import { Inter, Poppins } from 'next/font/google';
 
 const inter = Inter({
