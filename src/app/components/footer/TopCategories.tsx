@@ -1,33 +1,51 @@
 import Link from "next/link";
+import { getTopCategories } from "../../utils/api/category";
 
-const TopCategories = () => {
+interface Category {
+  id: number;
+  categoryName: string;
+}
+
+interface Props {
+  categories: Category[];
+}
+
+const TopCategories = ({ categories }: Props) => {
   return (
     <div>
-      <h2 className="font-inter font-bold text-[17px] mb-3 pt-5 uppercase">Top 4 Category</h2>
-      <ul className="list-none mt-2 font-poppins">
-        <li className="mb-2">
-          <Link className="text-[14px] hover:text-[#3DB765]"  href="/">
-          Development
-          </Link>
-        </li>
-        <li className="mb-2">
-          <Link className="text-[14px] hover:text-[#3DB765]" href="/">
-          Finance & Accounting
-          </Link>
-        </li>
-        <li className="mb-2">
-          <Link className="text-[14px] hover:text-[#3DB765]" href="/">
-          Design
-          </Link>
-        </li>
-        <li className="mb-2">
-          <Link className="text-[14px] hover:text-[#3DB765]" href="/">
-          Business
-          </Link>
-        </li>
-      </ul>
+      <h2 className="font-inter font-bold md:text-[17px] text-[14px] mb-3 pt-5 uppercase">
+        Top 4 Categories
+      </h2>
+
+      {categories.length === 0 ? (
+        <p className="text-sm text-red-500">No categories found</p>
+      ) : (
+        <ul className="list-none mt-2 font-poppins">
+          {categories.map((category) => (
+            <li key={category.id} className="mb-2">
+              <Link
+                href={`/categories/${category.id}`}
+                className="text-[14px] hover:text-[#3DB765]"
+              >
+                {category.categoryName}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  try {
+    // Fetch categories server-side
+    const categories = await getTopCategories();
+    return { props: { categories } };
+  } catch (error) {
+    console.error("Failed to load categories", error);
+    return { props: { categories: [] } }; // Return an empty array if there's an error
+  }
+}
 
 export default TopCategories;

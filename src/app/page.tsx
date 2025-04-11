@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Hero from "./components/Homepage/Hero";
 import GeneralInstruction from "./components/Homepage/GernalInstruction";
