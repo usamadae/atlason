@@ -43,7 +43,7 @@ const Header = () => {
                                 <div className="w-[25%]">
                                     <Logo />
                                 </div>
-                                <div className="w-[25%]">
+                                <div className="w-[25%] d">
                                     <BrowseCategory />
                                 </div>
                                 <div className="w-[50%]">
