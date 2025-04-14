@@ -105,7 +105,7 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
       >
         <div className="p-5">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">Menu</h2>
+            <h2 className="text-xl font-semibold">Menus</h2>
             <button onClick={toggleRightPanel} className="p-2 focus:outline-none">
               <svg width="24" height="24" viewBox="0 0 24 24">
                 <path d="M18 6L6 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
