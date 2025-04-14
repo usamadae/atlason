@@ -3,7 +3,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Logo from "./logo";
-import BrowseCategory from "./browseCategory";
+import BrowseCategory from "./BrowseCategory";
 import SearchField from "./SearchField";
 import HeaderIcon from "./HeaderIcon";
 import MyAccount from "./MyAccount";
