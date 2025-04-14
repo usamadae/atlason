@@ -7,7 +7,7 @@ const OurApp = () => {
             <h2 className="font-inter font-bold md:text-[17px] text-[14px] mb-3 pt-5 uppercase">Downlaod our app</h2>
             <div className="appbutton">
                 <div className="flex flex-col items-start space-y-2">
-                    <a href="your-app-store-link" className="flex items-center border gap-x-3 border-black-400  px-8 py-1 hover:border-[#3DB765] transition">
+                    <a href="your-app-store-link" className="flex items-center border gap-x-3 border-black-400  md:px-8 px-4 py-1 hover:border-[#3DB765] transition">
                         <Image
                             src="/images/appstore.png"
                             alt="About Page"
@@ -20,7 +20,7 @@ const OurApp = () => {
                         </span>
                     </a>
 
-                    <a href="your-app-store-link" className="flex items-center border gap-x-3 border-black-400  px-8 py-1 hover:border-[#3DB765] transition">
+                    <a href="your-app-store-link" className="flex items-center border gap-x-3 border-black-400 md:px-8 px-4 py-1 hover:border-[#3DB765] transition">
                         <Image
                             src="/images/playstore.png"
                             alt="About Page"

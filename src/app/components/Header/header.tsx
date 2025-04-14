@@ -128,7 +128,8 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
           </div>
           <div className="mb-6">
             <h3 className="text-lg font-medium mb-3">My Account</h3>
-            <MyAccount />
+            <MyAccount toggleRightPanel={toggleRightPanel} />
+
           </div>
         </div>
       </div>
