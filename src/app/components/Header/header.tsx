@@ -89,7 +89,7 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
   return (
     <>
       <header
-        className={`w-full left-0 top-0 z-50 bg-[#F7F7F7] md:px-0 px-2 py-3 transition-all duration-300 ${isFixed ? 'fixed shadow-md' : 'absolute'
+        className={`w-full left-0 top-0 z-50 bg-[#F7F7F7] md:px-0 px-2 py-3 transition-all duration-300 ${isFixed ? 'fixed shadow-md' : 'absolute transform-none'
           } ${animateClass}`}
       >
         <div className="container mx-auto">
