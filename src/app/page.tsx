@@ -1,3 +1,4 @@
+'use client';
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Hero from "./components/Homepage/Hero";
@@ -12,16 +13,16 @@ import LatestNews from "./components/Homepage/LatestNews";
 
 export default function Home() {
   return (
-<>
-<Hero/>
-<GeneralInstruction/>
-<FeaturedCourses/>
-<RecommendedCourses/>
-<Learner/>
-<Testimonial/>
-<FocusOnYourGoal/>
-<StartLearning/>
-<LatestNews/>
-</>
+    <>
+      <Hero />
+      <GeneralInstruction />
+      <FeaturedCourses />
+      <RecommendedCourses />
+      <Learner />
+      <Testimonial />
+      <FocusOnYourGoal />
+      <StartLearning />
+      <LatestNews />
+    </>
   );
 }

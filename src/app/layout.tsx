@@ -5,6 +5,8 @@ import Footer from "./components/footer/footer";
 import { Inter, Poppins } from "next/font/google";
 import { getTopCategories } from "./utils/api/category";
 import { browseCategoriesWithSub } from "./utils/api/browseCategory";
+import { CartProvider } from "../context/CartContext";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,8 +56,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
       <body className={`${inter.variable} ${poppins.variable}`}>
         {/* Pass the fetched data to Header and Footer */}
-        <Header browsingCategory={browsingCategory} />
-        {children}
+        <CartProvider>
+        <Header browsingCategory={browsingCategory} animate={[]} />
+        <Toaster position="top-center" />
+          {children}
+        </CartProvider>
         <Footer categories={categories} />
       </body>
     </html>

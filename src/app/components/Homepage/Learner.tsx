@@ -1,39 +1,42 @@
 // Learner.jsx
+'use client';
 import Image from 'next/image';
+import { useCart } from '../../../context/CartContext';
 
 const Learner = () => {
   // Mock data for the learner viewing courses
+  const { addToCart } = useCart();
   const courses = [
     {
       id: 1,
-      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry1.',
       description: 'Lorem ipsum is simply dummy text of the typesetting',
       rating: 5.0,
-      price: 0.00,
+      price: 10.00,
       image: '/images/learner.png',
     },
     {
       id: 2,
-      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry2.',
       description: 'Lorem ipsum is simply dummy text of the typesetting',
       rating: 5.0,
-      price: 0.00,
+      price: 50.00,
       image: '/images/learner.png',
     },
     {
       id: 3,
-      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry3.',
       description: 'Lorem ipsum is simply dummy text of the typesetting',
       rating: 5.0,
-      price: 0.00,
+      price: 30.00,
       image: '/images/learner.png',
     },
     {
       id: 4,
-      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      title: 'Lorem ipsum is simply dummy text of the printing and typesetting industry4.',
       description: 'Lorem ipsum is simply dummy text of the typesetting',
       rating: 5.0,
-      price: 0.00,
+      price: 40.00,
       image: '/images/learner.png',
     },
   ];
@@ -99,7 +102,7 @@ const Learner = () => {
               
               <div className="flex items-center justify-between">
                 <span className="font-bold font-inter xl:text-[29px] text-[24px]">${course.price.toFixed(2)}</span>
-                <button className="bg-[#3DB765] text-[14px] hover:bg-black text-white font-semibold px-3 py-1 cursor-pointer transition-colors">
+                <button  onClick={() => addToCart(course)} className="bg-[#3DB765] text-[14px]  hover:bg-black text-white font-semibold px-3 py-1 !cursor-pointer transition-colors">
                   Enroll
                 </button>
               </div>

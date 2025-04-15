@@ -7,6 +7,6 @@ export async function browseCategoriesWithSub() {
     return res.data;
   } catch (error) {
     console.error("Failed to fetch categories with subcategories:", error);
-    return []; // fallback
+    return []; // Fallback if error occurs
   }
 }

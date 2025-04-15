@@ -9,7 +9,7 @@
 
 
 
-@theme{
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -26,9 +26,38 @@
   }
 }
 
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0px);
+  }
+  
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-in forwards;
+}
+
+
 body {
-  background: 
-var(--foreground);
+  background:
+    var(--foreground);
   color: var(--background);
 
 }
@@ -36,7 +65,7 @@ var(--foreground);
 .social i {
   background-color: #000;
   color: #fff;
-transition: 0.3s linear all;
+  transition: 0.3s linear all;
   font-size: 14px;
   width: 30px;
   height: 30px;
@@ -44,6 +73,7 @@ transition: 0.3s linear all;
   justify-content: center;
   align-items: center;
 }
+
 .social {
   display: flex;
   align-items: center;
@@ -52,11 +82,11 @@ transition: 0.3s linear all;
 }
 
 
-.custom-word-spacing-8{
+.custom-word-spacing-8 {
   word-spacing: 2px;
 }
 
-.social i:hover{
+.social i:hover {
   background-color: #3DB765;
 }
 

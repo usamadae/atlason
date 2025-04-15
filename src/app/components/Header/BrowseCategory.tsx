@@ -1,18 +1,15 @@
-import { GetServerSideProps } from "next";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { browseCategoriesWithSub } from "../../utils/api/browseCategory";
 
 interface Subcategory {
-  id: number;
-  name: string;
+  subCategoryId: number;
+  subCategoryName: string;
 }
 
 interface Category {
-  id: number;
-  name: string;
-  subcategories?: Subcategory[];
+  categoryId: number;
+  categoryName: string;
+  subCategoryDTOs?: Subcategory[];
 }
 
 interface BrowseCategoryProps {
@@ -21,90 +18,89 @@ interface BrowseCategoryProps {
 
 const BrowseCategory = ({ categories }: BrowseCategoryProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hoveredCategoryId, setHoveredCategoryId] = useState<number | null>(null);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const selectedCategory = categories.find(
+    (category) => category.categoryId === hoveredCategoryId
+  );
 
   return (
-    <div className="relative cursor-pointer">
-      {/* Browse Category Button (Image) */}
-      <Link href="/">
+    <div
+      className="relative cursor-pointer"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => {
+        setIsOpen(false);
+        setHoveredCategoryId(null);
+      }}
+    >
+      {/* Browse Category Button */}
+      <div className="flex items-center gap-2 bg-white border px-3 pr-8 py-[10.8px]  relative">
+        <span className="text-black text-[16px] font-inter">Browse</span>
         <Image
           src="/images/dropdown.png"
-          alt="Browse Categories"
+          alt="Dropdown Icon"
           width={10}
           height={5}
-          className="cursor-pointer absolute right-[15px] top-[20px]"
+          className="absolute right-3 top-1/2 transform -translate-y-1/2"
         />
-      </Link>
+      </div>
 
       {/* Dropdown Menu */}
-      <button
-        onClick={toggleDropdown}
-        className="ps-3 pr-20 py-[10.8px] bg-white-500 border-1 text-black text-[16px] font-inter text-left w-full focus:outline-none"
-      >
-        Browse
-      </button>
-
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-10">
-          <ul className="py-2">
+        <div className="absolute top-[40px] left-0 mt-2 bg-white shadow-lg rounded-lg z-10 flex w-[600px]">
+          {/* Main Categories */}
+          <ul className="w-1/2 border-r py-2">
             {categories.map((category) => (
-              <li key={category.id} className="px-4 py-2 hover:bg-gray-100">
+              <li
+                key={category.categoryId}
+                onMouseEnter={() => setHoveredCategoryId(category.categoryId)}
+                className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${hoveredCategoryId === category.categoryId
+                    ? "bg-gray-100 font-semibold"
+                    : ""
+                  }`}
+              >
                 <div className="flex justify-between items-center">
-                  <span>{category.name}</span>
-                  {(category.subcategories ?? []).length > 0 && (
-                    <span className="text-sm text-gray-500">▶</span>
+                  <span className="tex-[18px] font-semibold">{category.categoryName}</span>
+                  {(category.subCategoryDTOs ?? []).length > 0 && (
+                    <span className="text-sm text-black-500">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        className="w-4 h-4 text-black-500"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
                   )}
                 </div>
-
-                {/* Subcategories (If Any) */}
-                {(category.subcategories ?? []).length > 0 && (
-                  <ul className="ml-4 mt-2 space-y-1">
-                    {(category.subcategories ?? []).map((subcategory) => (
-                      <li key={subcategory.id} className="px-4 py-1 text-gray-600 hover:bg-gray-200">
-                        {subcategory.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </li>
             ))}
+          </ul>
+
+          {/* Subcategories */}
+          <ul className="w-1/2 py-2 pl-4">
+            {selectedCategory?.subCategoryDTOs?.length ? (
+              selectedCategory.subCategoryDTOs.map((subcategory) => (
+                <li
+                  key={subcategory.subCategoryId}
+                  className="px-2 py-1 hover:bg-gray-100 cursor-pointer"
+                >
+                  <span className="tex-[18px] font-semibold">{subcategory.subCategoryName}</span>
+                </li>
+              ))
+            ) : (
+              <li className="text-sm text-gray-400 px-2 py-1">
+                {hoveredCategoryId ? "No subcategories" : "Hover a category"}
+              </li>
+            )}
           </ul>
         </div>
       )}
     </div>
   );
-};
-
-// Fetch categories on server-side and transform the API response
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const rawCategories = await browseCategoriesWithSub();
-    // Transform the API response:
-    // Convert keys: categoryId -> id, categoryName -> name,
-    // subCategoryDTOs -> subcategories (and subCategoryId -> id, subCategoryName -> name)
-    const transformedCategories: Category[] = rawCategories.map((cat: any) => ({
-      id: cat.categoryId,
-      name: cat.categoryName,
-      subcategories: (cat.subCategoryDTOs || []).map((sub: any) => ({
-        id: sub.subCategoryId,
-        name: sub.subCategoryName,
-      })),
-    }));
-
-    return {
-      props: {
-        categories: transformedCategories,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    return {
-      props: {
-        categories: [],
-      },
-    };
-  }
 };
 
 export default BrowseCategory;
