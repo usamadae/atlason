@@ -168,7 +168,7 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
           </div>
           {isMobile && (
             <div className="mb-6">
-              <SearchField />
+        
             </div>
           )}
           <div className="mb-6">
@@ -176,7 +176,7 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
             <BrowseCategory categories={browsingCategory} />
           </div>
           <div className="mb-6">
-            <h3 className="text-lg font-medium mb-3">Quick Links</h3>
+            <h3 className="text-lg font-medium mb-3">Quick Search</h3>
             <SearchField />
           </div>
           <div className="mb-6">

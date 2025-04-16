@@ -44,7 +44,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <div className="p-4 overflow-y-auto font-inter font-semibold h-[calc(100vh-250px)]">
+        <div className="p-4 overflow-y-auto font-inter font-semibold md:h-[calc(100vh-250px)] h-[calc(100vh-300px)] ">
           {state.items.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
