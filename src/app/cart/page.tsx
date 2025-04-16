@@ -71,7 +71,7 @@ export default function CartPage() {
         </div>
 
         {/* Summary */}
-        <div className="bg-gray-50 p-6 rounded-md shadow-sm h-fit md:mt-10 mt-2 font-inter">
+        <div className="bg-gray-50 md:p-6 p-4 rounded-md shadow-sm h-fit md:mt-10 mt-2 font-inter">
           <h3 className="text-lg font-semibold mb-4 text-[24px]">Summary</h3>
           <label className="block text-sm font-medium mb-2 text-[18px]">
             Gift card or discount code?
@@ -80,9 +80,9 @@ export default function CartPage() {
             <input
               type="text"
               placeholder="Please enter code"
-              className="flex-1 border px-3 py-2 rounded-l-md"
+              className="flex-1 w-[70%] border px-3 py-2 rounded-l-md"
             />
-            <button className="bg-black text-[18px] text-white px-4 py-2 rounded-r-md">
+            <button className="bg-black w-[30%] text-[18px] text-white px-4 py-2 rounded-r-md">
               Apply
             </button>
           </div>
