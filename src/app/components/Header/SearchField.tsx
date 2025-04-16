@@ -113,7 +113,7 @@ const SearchField = () => {
       {query && results.length > 0 && (
         <div
           ref={resultsRef} // Attach reference to results container
-          className="absolute xl:top-[62px] top-[55px] p-5 left-0 font-inter w-[100%] bg-white border border-gray-300 rounded shadow-md z-10"
+          className="absolute xl:top-[62px] top-[55px] p-5 left-0 font-inter w-[100%] bg-white border border-gray-300 rounded shadow-md z-10 h-[400px] overflow-y-auto"
         >
           {loading && <p className="text-sm">Searching...</p>}
   {/* Show "No course found" if results are empty and no error */}
