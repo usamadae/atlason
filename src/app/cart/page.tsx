@@ -13,7 +13,7 @@ export default function CartPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-[80px] pt-[140px] font-inter">
+    <div className="container mx-auto px-4 md:py-[80px] py-[40px] font-inter">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Cart Items */}
         <div className="lg:col-span-2">
