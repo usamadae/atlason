@@ -18,6 +18,9 @@
   --font-poppins: "Poppins";
 }
 
+html , body{
+  overflow-x: hidden;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -45,7 +48,19 @@
     transform: translateY(-100%);
   }
 }
+#nprogress {
+  pointer-events: none;
+}
 
+#nprogress .bar {
+  background: #3DB765;
+  height: 3px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1031;
+}
 .animate-slide-down {
   animation: slideDown 0.4s ease-out forwards;
 }

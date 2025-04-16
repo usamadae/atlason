@@ -61,37 +61,38 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
   const toggleRightPanel = () => {
     setIsRightPanelOpen(!isRightPanelOpen);
   };
-  const [scrollY, setScrollY] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [animateClass, setAnimateClass] = useState('');
-
+  const [scrollY, setScrollY] = useState(0);
+  
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
-
+  
       if (currentScroll > 200 && !isFixed) {
         setIsFixed(true);
         setAnimateClass('animate-slide-down');
       } else if (currentScroll <= 100 && isFixed) {
         setAnimateClass('animate-slide-up');
         setTimeout(() => {
-          setIsFixed(false); // Remove 'fixed' after animation
+          setIsFixed(false);
         }, 400); // Match animation duration
       }
-
+  
       setScrollY(currentScroll);
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isFixed]);
 
   return (
     <>
-      <header
-        className={`w-full left-0 top-0 z-50 bg-[#F7F7F7] md:px-0 px-2 py-3 transition-all duration-300 ${isFixed ? 'fixed shadow-md' : 'absolute !transform-none'
-          } ${animateClass}`}
-      >
+       <header
+    className={`w-full left-0 top-0 z-50 bg-[#F7F7F7] md:px-0 px-2 py-3 transition-all duration-300
+      ${isFixed ? 'fixed shadow-md' : scrollY > 0 ? 'absolute !transform-none' : '!transform-none'}
+      ${animateClass}`}
+  >
         <div className="container mx-auto">
           {/* Desktop View */}
           {!isMobile && !isTablet && (
@@ -152,7 +153,7 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
       </header>
       {/* Right Panel Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-[80%] bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isRightPanelOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 h-full md:w-[80%] w-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isRightPanelOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <div className="p-5">
