@@ -6,11 +6,12 @@ import { Inter, Poppins } from "next/font/google";
 import { getTopCategories } from "./utils/api/category";
 import { browseCategoriesWithSub } from "./utils/api/browseCategory";
 import { CartProvider } from "../context/CartContext";
-import { CartDrawerProvider } from "../context/CartDrawerContext"; // ✅ Import provider
+import { CartDrawerProvider } from "../context/CartDrawerContext";
 import { Toaster } from "react-hot-toast";
 import CartDrawerContainer from "./components/Header/CartDrawerContainer";
 import type { ReactNode } from 'react';
 import RouteProgress from "./components/Routeprogress/RouteProgress";
+import { WishlistProvider } from "../context/WishlistContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,7 +45,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const browsingCategory = await browseCategoriesWithSub();
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
         <link
           rel="stylesheet"
@@ -54,17 +55,19 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={`${inter.variable} ${poppins.variable}`}>
+      <body>
         <CartProvider>
-          <CartDrawerProvider> {/* ✅ Wrap with provider */}
-          <RouteProgress />
-            <Header browsingCategory={browsingCategory} animate={[]} />
-            <Toaster position="top-center" />
-            <CartDrawerContainer />
-            {children}
+          <CartDrawerProvider>
+            <WishlistProvider>
+              <RouteProgress />
+              <Header browsingCategory={browsingCategory} animate={[]} />
+              <Toaster position="top-center" />
+              <CartDrawerContainer />
+              {children}
+              <Footer categories={categories} />
+            </WishlistProvider>
           </CartDrawerProvider>
         </CartProvider>
-        <Footer categories={categories} />
       </body>
     </html>
   );

@@ -1,4 +1,3 @@
-// src/app/signup/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -17,8 +16,9 @@ export default function SignUp() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [agreeTerms, setAgreeTerms] = useState(false);
-  const [role, setRole] = useState('student'); // Default role
+  const [role, setRole] = useState('Student'); // Default role
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,15 +26,31 @@ export default function SignUp() {
       setError('Passwords do not match');
       return;
     }
-
+  
     if (!agreeTerms) {
       setError('You must agree to the Terms and Privacy Policies');
       return;
     }
-
+  
     setIsLoading(true);
     setError('');
-    
+  
+    const model = 1;
+  
+    const instructorDetailDTO = role === 'Student' ? {
+      createdBy: email,
+      createdOn: new Date().toISOString(),
+      lastModifiedBy: email,
+      lastModifiedOn: new Date().toISOString(),
+      instructorDetailId: 1, // You can change this as necessary
+      idUser: email,
+      myProperty: 1,
+      videoLevelEditing: 2,
+      customerSharing: 1,
+      typeCourse: 2,
+      categoryId: 3
+    } : null;
+  
     try {
       const registrationData = {
         username: email,
@@ -42,26 +58,20 @@ export default function SignUp() {
         confirmPassword: confirmPassword,
         name: name,
         role: role,
-        instructorDetailDTO: role === 'instructor' ? {
-          createdBy: email,
-          createdOn: new Date().toISOString(),
-          lastModifiedBy: email,
-          lastModifiedOn: new Date().toISOString(),
-          instructorDetailId: 0,
-          idUser: "",
-          myProperty: 1,
-          videoLevelEditing: 1,
-          customerSharing: 1,
-          typeCourse: 1,
-          categoryId: 0
-        } : null
+        model: model,  // Adding model to the root of the registrationData
+        instructorDetailDTO: instructorDetailDTO  // Add the instructorDetailDTO only if the role is 'instructor'
       };
-
+  
       const response = await axios.post('/api/Account/register', registrationData);
-      
-      // If registration is successful, redirect to login
-      router.push('/login');
+  
+      // On successful registration, show success message for 3 seconds and then redirect
+      setSuccessMessage('Your account has been successfully created. Redirecting to login...');
+      setTimeout(() => {
+        router.push('/login');
+      }, 3000); // Redirect after 3 seconds
+  
     } catch (err: any) {
+      console.error('Registration Error:', err);
       setError(err.response?.data?.message || 'Registration failed');
     } finally {
       setIsLoading(false);
@@ -85,7 +95,9 @@ export default function SignUp() {
           {error && (
             <div className="bg-red-100 text-red-600 p-3 rounded mb-4">{error}</div>
           )}
-
+  {successMessage && (
+            <div className="bg-green-100 text-green-600 p-3 rounded mb-4">{successMessage}</div>
+          )}
           <form className="font-inter " onSubmit={handleSignUp}>
             <div className='flex flex-wrap gap-x-4 md:gap-y-2 gap-y-1'>
             <div className="mb-6 md:w-[48%] w-[100%]">
@@ -170,14 +182,14 @@ export default function SignUp() {
     <button
       type="button"
       className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all ${
-        role === 'student'
+        role === 'Student'
           ? 'border-[#3DB765] bg-[#3DB76510] text-[#3DB765]'
           : 'border-black-300 hover:border-black-400'
       }`}
-      onClick={() => setRole('student')}
+      onClick={() => setRole('Student')}
     >
       <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${
-        role === 'student' ? 'bg-[#3DB765] text-white' : 'bg-gray-100'
+        role === 'Student' ? 'bg-[#3DB765] text-white' : 'bg-gray-100'
       }`}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -188,9 +200,9 @@ export default function SignUp() {
       <input
         type="radio"
         name="role"
-        value="student"
-        checked={role === 'student'}
-        onChange={() => setRole('student')}
+        value="Student"
+        checked={role === 'Student'}
+        onChange={() => setRole('Student')}
         className="hidden"
       />
     </button>
@@ -288,4 +300,8 @@ export default function SignUp() {
       </div>
     </div>
   );
+}
+
+function setSuccessMessage(arg0: string) {
+  throw new Error('Function not implemented.');
 }

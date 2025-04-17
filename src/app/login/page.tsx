@@ -25,13 +25,14 @@ export default function Login() {
     setError('');
     try {
       const response = await axios.post('/api/Account/login', {
-        email,
-        password,
-        rememberMe
+        username: email,
+        password
+     
       });
       localStorage.setItem('token', response.data.token);
       router.push('/dashboard');
     } catch (err: any) {
+      console.error('Login Error:', err);
       setError(err.response?.data?.message || 'Login failed');
     } finally {
       setIsLoading(false);

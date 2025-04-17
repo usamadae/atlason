@@ -4,10 +4,13 @@ import { useCart } from '../../../context/CartContext';
 import CartDrawer from './CartDrawer'; // Make sure this path is correct
 import { useCartDrawer } from '../../../context/CartDrawerContext';
 import Link from 'next/link';
+import { useWishlist } from '../../../context/WishlistContext';
 
 const HeaderIcon = () => {
   const { state } = useCart(); // `state` has the `items` array
   const cartCount = state.items.length;
+  const { wishlist } = useWishlist();
+  const wishlistCount = wishlist.length;
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { openCart } = useCartDrawer(); // use global openCart
 
@@ -38,10 +41,12 @@ const HeaderIcon = () => {
             />
           </svg>
         </a>
-        <a href="#">
+     <Link href='/wishlist' className='relative'>
           <i className="fa-regular fa-heart text-[18px]"></i>
-        </a>
-
+          <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5  h-5 flex items-center justify-center rounded-full">
+            {wishlistCount}
+          </span>
+        </Link>
         {/* Updated Cart Drawer Toggle Button */}
         <button onClick={openCart} className="relative cursor-pointer">
           <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5  h-5 flex items-center justify-center rounded-full">
