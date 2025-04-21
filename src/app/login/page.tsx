@@ -30,7 +30,7 @@ export default function Login() {
      
       });
       localStorage.setItem('token', response.data.token);
-      router.push('/dashboard');
+      router.push('/userprofile');
     } catch (err: any) {
       console.error('Login Error:', err);
       setError(err.response?.data?.message || 'Login failed');
