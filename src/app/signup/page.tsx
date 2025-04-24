@@ -72,7 +72,8 @@ export default function SignUp() {
   
     } catch (err: any) {
       console.error('Registration Error:', err);
-      setError(err.response?.data?.message || 'Registration failed');
+      setError(err.response?.data?.message || err.response?.data?.title || 'Registration failed');
+
     } finally {
       setIsLoading(false);
     }
