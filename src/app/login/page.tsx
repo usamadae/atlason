@@ -1,11 +1,15 @@
 // src/app/login/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import axios from '../lib/axios';
+import { checkAndRestoreSession } from '../lib/authUtils';
+
+// Import the event dispatcher function
+import { dispatchLoginEvent } from '../components/Header/MyAccount';
 
 export default function Login() {
   const router = useRouter();
@@ -19,6 +23,22 @@ export default function Login() {
   const [forgotEmail, setForgotEmail] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
+  useEffect(() => {
+    // Check for remembered email on component mount
+    const rememberedEmail = localStorage.getItem('rememberedEmail');
+    if (rememberedEmail) {
+      setEmail(rememberedEmail);
+      setRememberMe(true);
+    }
+    
+    // Check if user has a valid session
+    const isLoggedIn = checkAndRestoreSession();
+    if (isLoggedIn) {
+      // User is already logged in, redirect to profile
+      router.push('/userprofile');
+    }
+  }, [router]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -27,9 +47,24 @@ export default function Login() {
       const response = await axios.post('/api/Account/login', {
         username: email,
         password
-     
       });
+      
+      // Store the token in localStorage
       localStorage.setItem('token', response.data.token);
+      
+      // Handle "Remember Me" functionality
+      if (rememberMe) {
+        // Store user email in localStorage if "Remember Me" is checked
+        localStorage.setItem('rememberedEmail', email);
+      } else {
+        // Remove stored email if "Remember Me" is unchecked
+        localStorage.removeItem('rememberedEmail');
+      }
+      
+      // Important: Dispatch the login event to update the UI immediately
+      dispatchLoginEvent();
+      
+      // Redirect to user profile page
       router.push('/userprofile');
     } catch (err: any) {
       console.error('Login Error:', err);
@@ -59,6 +94,7 @@ export default function Login() {
   };
 
   return (
+    // Your JSX remains the same
     <div className="flex items-center justify-center px-4 md:px-8">
       <div className="flex container mx-auto md:py-[80px] py-[40px] justify-center items-center  bg-white overflow-hidden">
         {/* Left Side - Form */}
@@ -171,7 +207,7 @@ export default function Login() {
           )}
 
           <div className="mt-6 text-center md:text-[20px] text-[16px] font-inter font-medium">
-            Don’t have an account? <Link href="/" className="text-[#3DB765] font-medium">Sign up</Link>
+            Don't have an account? <Link href="/" className="text-[#3DB765] font-medium">Sign up</Link>
           </div>
 
           <div className="flex items-center my-10">

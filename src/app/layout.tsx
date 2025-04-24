@@ -12,6 +12,7 @@ import CartDrawerContainer from "./components/Header/CartDrawerContainer";
 import type { ReactNode } from 'react';
 import RouteProgress from "./components/Routeprogress/RouteProgress";
 import { WishlistProvider } from "../context/WishlistContext";
+import AuthChecker from "./components/AuthChecker/AuthChecker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
               <Header browsingCategory={browsingCategory} animate={[]} />
               <Toaster position="top-center" />
               <CartDrawerContainer />
+              <AuthChecker />
               {children}
               <Footer categories={categories} />
             </WishlistProvider>

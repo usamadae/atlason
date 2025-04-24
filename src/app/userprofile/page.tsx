@@ -195,7 +195,7 @@ export default function UserProfile() {
       )}
 
       {/* Profile Information */}
-      <div className="flex flex-col md:flex-row gap-6 items-center mb-12">
+      <div className="flex flex-col md:flex-row md:gap-6 gap-0 items-center mb-12">
         <div className="w-70 h-70">
           <Image 
             src="/images/userplaceholder.jpg" 
@@ -206,11 +206,11 @@ export default function UserProfile() {
           />
         </div>
         <div className="flex-1">
-          <h2 className="text-[72px] font-inter capitalize font-bold mb-1">{profile?.completeName || 'Alaston Parker'}</h2>
-          <p className="text-black font-inter font-semibold text-[18px] mb-4 text-sm">
+          <h2 className="xl:text-[72px] md:text-[52px] text-[24px] md:text-left text-center font-inter capitalize font-bold mb-1">{profile?.completeName || 'Alaston Parker'}</h2>
+          <p className="text-black font-inter font-semibold md:text-left text-center text-[18px] mb-4 text-sm">
             {profile?.roles?.[0]?.description || "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}
           </p>
-          <p className="text-[#3DB765] font-inter font-semibold text-[18px] mb-4">{profile?.email || 'Alaston@gmail.com'}</p>
+          <p className="text-[#3DB765] font-inter font-semibold md:text-left text-center text-[18px] mb-4">{profile?.email || 'Alaston@gmail.com'}</p>
           
           <div className="border-2 border-dashed rounded-md p-4 flex justify-center items-center bg-gray-50 max-w-md">
             <div className="flex flex-col items-center">
@@ -247,7 +247,7 @@ export default function UserProfile() {
       </div>
 
       {/* Account Details - Editable Form */}
-      <div>
+      <div className='md:px-0 px-2'>
 
         <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] font-bold font-inter inline-block">
         Account <span className="text-[#3DB765] relative">   Details
@@ -353,11 +353,11 @@ export default function UserProfile() {
           </div>
         </div>
         
-        <div className="mt-8 flex justify-end">
+        <div className="mt-8 flex justify-center">
           <button 
             onClick={handleSave}
             disabled={isSaving}
-            className="bg-black text-white px-6 py-1 text-sm rounded hover:bg-gray-800 transition"
+            className="bg-black text-white px-8 py-2 text-sm rounded hover:bg-gray-800 transition"
           >
             {isSaving ? 'Saving...' : 'Save'}
           </button>

@@ -37,7 +37,7 @@ export default function SignUp() {
   
     const model = 1;
   
-    const instructorDetailDTO = role === 'Student' ? {
+    const instructorDetailDTO  = {
       createdBy: email,
       createdOn: new Date().toISOString(),
       lastModifiedBy: email,
@@ -49,7 +49,7 @@ export default function SignUp() {
       customerSharing: 1,
       typeCourse: 2,
       categoryId: 3
-    } : null;
+    };
   
     try {
       const registrationData = {
@@ -210,14 +210,14 @@ export default function SignUp() {
     <button
       type="button"
       className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all ${
-        role === 'instructor'
+        role === 'Instructor'
           ? 'border-[#3DB765] bg-[#3DB76510] text-[#3DB765]'
           : 'border-black-300 hover:border-black-400'
       }`}
-      onClick={() => setRole('instructor')}
+      onClick={() => setRole('Instructor')}
     >
       <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${
-        role === 'instructor' ? 'bg-[#3DB765] text-white' : 'bg-gray-100'
+        role === 'Instructor' ? 'bg-[#3DB765] text-white' : 'bg-gray-100'
       }`}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
@@ -228,9 +228,9 @@ export default function SignUp() {
       <input
         type="radio"
         name="role"
-        value="instructor"
-        checked={role === 'instructor'}
-        onChange={() => setRole('instructor')}
+        value="Instructor"
+        checked={role === 'Instructor'}
+        onChange={() => setRole('Instructor')}
         className="hidden"
       />
     </button>
