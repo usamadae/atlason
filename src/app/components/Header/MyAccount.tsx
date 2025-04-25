@@ -44,11 +44,12 @@ type MyAccountProps = {
   toggleRightPanel?: () => void; 
 }; 
 
-// Create a custom event for login
+// Create custom events for login, logout, and profile update
 declare global {
   interface WindowEventMap {
     'app:login': CustomEvent;
     'app:logout': CustomEvent;
+    'app:profileUpdate': CustomEvent;
   }
 }
 
@@ -63,8 +64,14 @@ const dispatchLogoutEvent = () => {
   document.dispatchEvent(event);
 };
 
-// Export these functions to be used in login/logout components
-export { dispatchLoginEvent, dispatchLogoutEvent };
+// New function to dispatch profile update event
+const dispatchProfileUpdateEvent = () => {
+  const event = new CustomEvent('app:profileUpdate');
+  document.dispatchEvent(event);
+};
+
+// Export these functions to be used in login/logout/update components
+export { dispatchLoginEvent, dispatchLogoutEvent, dispatchProfileUpdateEvent };
 
 const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
   const router = useRouter();
@@ -99,15 +106,19 @@ const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
     // Then verify with the server
     checkAuthStatus();
     
-    // Set up event listeners for login/logout events
+    // Set up event listeners for login/logout/update events
     const loginHandler = () => handleLogin();
     const logoutHandler = () => {
       setIsAuthenticated(false);
       setProfile(null);
     };
+    const profileUpdateHandler = () => {
+      checkAuthStatus(); // Refresh profile data when update event is received
+    };
     
     document.addEventListener('app:login', loginHandler);
     document.addEventListener('app:logout', logoutHandler);
+    document.addEventListener('app:profileUpdate', profileUpdateHandler);
     
     // Listen for storage changes (for cross-tab synchronization)
     window.addEventListener('storage', handleStorageChange);
@@ -115,6 +126,7 @@ const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
     return () => {
       document.removeEventListener('app:login', loginHandler);
       document.removeEventListener('app:logout', logoutHandler);
+      document.removeEventListener('app:profileUpdate', profileUpdateHandler);
       window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
@@ -239,7 +251,7 @@ const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
       >
         <div className="flex items-center justify-center w-full h-full rounded-full bg-[#3DB765]">
           <span className="text-lg font-bold uppercase">
-            {profile?.completeName?.charAt(0) || "U"}
+            {profile?.firstname ? profile.firstname.charAt(0) : (profile?.completeName?.charAt(0) || "U")}
           </span>
         </div>
       </button>
@@ -250,7 +262,7 @@ const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 p-[14px] rounded-full bg-[#3DB765] flex items-center justify-center text-white">
                 <span className="text-lg font-bold uppercase">
-                  {profile?.completeName?.charAt(0) || "U"}
+                  {profile?.firstname ? profile.firstname.charAt(0) : (profile?.completeName?.charAt(0) || "U")}
                 </span>
               </div>
               <div>

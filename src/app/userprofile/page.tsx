@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import axios from '../lib/axios';
 import UserProfileCourseSlider from "../components/UserProfileCourseSlider/UserProfileCourseSlider"; 
+import { dispatchProfileUpdateEvent } from "../components/Header/MyAccount";
 
 interface Role {
   description: string;
@@ -52,7 +53,9 @@ export default function UserProfile() {
     username: '',
     email: '',
     password: '',
-    fullName: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
     title: '',
     language: 'English'
   });
@@ -83,7 +86,9 @@ export default function UserProfile() {
         username: response.data.completeName?.split(' ')[0] || '',
         email: response.data.email || '',
         password: '123456', // For display only
-        fullName: response.data.completeName || '',
+        firstName: response.data.firstname || '',
+        lastName: response.data.lastname || '',
+        phoneNumber: response.data.phone || '',
         title: response.data.roles?.[0]?.name || '',
         language: 'English'
       });
@@ -109,45 +114,50 @@ export default function UserProfile() {
     });
   };
 
-  const handleSave = async () => {
-    const token = localStorage.getItem('token');
-    if (!token || !profile) return;
 
-    setIsSaving(true);
-    setError('');
-    setSuccess('');
+// Then modify the handleSave function:
+const handleSave = async () => {
+  const token = localStorage.getItem('token');
+  if (!token || !profile) return;
+
+  setIsSaving(true);
+  setError('');
+  setSuccess('');
+  
+  try {
+    // Prepare the data for the API
+    const updateData = {
+      id: profile.id,
+      email: profile.email, // Use original email since it can't be updated
+      completeName: `${formData.firstName} ${formData.lastName}`.trim(),
+      phone: formData.phoneNumber,
+      firstname: formData.firstName,
+      lastname: formData.lastName,
+      instructorDetails: profile.instructorDetails,
+      roles: profile.roles
+    };
     
-    try {
-      // Prepare the data for the API
-      const updateData = {
-        id: profile.id,
-        email: formData.email,
-        completeName: formData.fullName,
-        phone: profile.phone,
-        firstname: formData.fullName.split(' ')[0],
-        lastname: formData.fullName.split(' ').slice(1).join(' ') || null,
-        instructorDetails: profile.instructorDetails,
-        roles: profile.roles
-      };
-      
-      await axios.post('/api/Account/updateUser', updateData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      setSuccess('Profile updated successfully');
-      
-      // Reload profile data to show updated information
-      fetchProfileData();
-    } catch (err: any) {
-      console.error('Update error:', err);
-      setError(err.response?.data?.message || 'Failed to update profile');
-    } finally {
-      setIsSaving(false);
-    }
-  };
+    await axios.post('/api/Account/updateUser', updateData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    setSuccess('Profile updated successfully');
+    
+    // Reload profile data to show updated information
+    fetchProfileData();
+    
+    // Dispatch event to notify other components of profile update
+    dispatchProfileUpdateEvent();
+  } catch (err: any) {
+    console.error('Update error:', err);
+    setError(err.response?.data?.message || 'Failed to update profile');
+  } finally {
+    setIsSaving(false);
+  }
+};
 
   if (isLoading) {
     return (
@@ -169,21 +179,19 @@ export default function UserProfile() {
     <div className="container mx-auto px-4 py-[80px]">
       {/* User Profile Header */}
       <div className="mb-6">
-     <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] font-bold font-inter inline-block">
-     User <span className="text-[#3DB765] relative">Profile
-                            <div className="absolute bottom-[1px] left-0 w-full h-1 ">
-                                <Image
-                                    src="/images/heading-line.png"
-                                    alt="Student with tablet"
-                                    width={260}
-                                    height={23}
-                                    className=""
-                                />
-    
-                            </div>
-                        </span>
-    
-                    </h2>
+        <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] font-bold font-inter inline-block">
+          User <span className="text-[#3DB765] relative">Profile
+            <div className="absolute bottom-[1px] left-0 w-full h-1">
+              <Image
+                src="/images/heading-line.png"
+                alt="Student with tablet"
+                width={260}
+                height={23}
+                className=""
+              />
+            </div>
+          </span>
+        </h2>
       </div>
 
       {success && (
@@ -226,55 +234,47 @@ export default function UserProfile() {
 
       {/* Purchase History/Courses */}
       <div className="mb-12">
-       
         <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] font-bold font-inter inline-block">
-        Purchase <span className="text-[#3DB765] relative">      History/Courses
-                            <div className="absolute bottom-[1px] left-0 w-full h-1 ">
-                                <Image
-                                    src="/images/heading-line.png"
-                                    alt="Student with tablet"
-                                    width={260}
-                                    height={23}
-                                    className=""
-                                />
-    
-                            </div>
-                        </span>
-    
-                    </h2>
-                    <UserProfileCourseSlider/>
-     
+          Purchase <span className="text-[#3DB765] relative">History/Courses
+            <div className="absolute bottom-[1px] left-0 w-full h-1">
+              <Image
+                src="/images/heading-line.png"
+                alt="Student with tablet"
+                width={260}
+                height={23}
+                className=""
+              />
+            </div>
+          </span>
+        </h2>
+        <UserProfileCourseSlider/>
       </div>
 
       {/* Account Details - Editable Form */}
       <div className='md:px-0 px-2'>
-
         <h2 className="xl:text-[52px] lg:text-[42px] md:text-[32px] text-[26px] font-bold font-inter inline-block">
-        Account <span className="text-[#3DB765] relative">   Details
-                            <div className="absolute bottom-[1px] left-0 w-full h-1 ">
-                                <Image
-                                    src="/images/heading-line.png"
-                                    alt="Student with tablet"
-                                    width={260}
-                                    height={23}
-                                    className=""
-                                />
-    
-                            </div>
-                        </span>
-    
-                    </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-y-4 max-w-3xl">
+          Account <span className="text-[#3DB765] relative">Details
+            <div className="absolute bottom-[1px] left-0 w-full h-1">
+              <Image
+                src="/images/heading-line.png"
+                alt="Student with tablet"
+                width={260}
+                height={23}
+                className=""
+              />
+            </div>
+          </span>
+        </h2>
+        <div className="flex flex-col  mt-10 gap-y-2">
           <div>
             <label className="block font-medium mb-1">Username</label>
           </div>
-          <div className="bg-gray-50 p-2">
+          <div className="bg-gray-100 p-2">
             <input
               type="text"
               name="username"
-              value={formData.username}
-              onChange={handleInputChange}
-              className="w-full bg-gray-50 outline-none"
+              value={formData.email}
+              className="w-full bg-gray-100 outline-none"
               placeholder="Username"
               disabled
             />
@@ -283,74 +283,60 @@ export default function UserProfile() {
           <div>
             <label className="block font-medium mb-1">Email</label>
           </div>
-          <div className="bg-gray-50 p-2">
+          <div className="bg-gray-100 p-2">
             <input
               type="email"
               name="email"
               value={formData.email}
-              onChange={handleInputChange}
-              className="w-full bg-gray-50 outline-none"
+              className="w-full bg-gray-100 outline-none"
               placeholder="Email"
-            />
-          </div>
-          
-          <div>
-            <label className="block font-medium mb-1">Password</label>
-          </div>
-          <div className="bg-gray-50 p-2">
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="w-full bg-gray-50 outline-none"
-              placeholder="Password"
               disabled
             />
           </div>
           
           <div>
-            <label className="block font-medium mb-1">Full Name</label>
+            <label className="block font-medium mb-1">First Name</label>
           </div>
-          <div className="bg-gray-50 p-2">
+          <div className="bg-gray-100 p-2">
             <input
               type="text"
-              name="fullName"
-              value={formData.fullName}
+              name="firstName"
+              value={formData.firstName}
               onChange={handleInputChange}
-              className="w-full bg-gray-50 outline-none"
-              placeholder="Full Name"
+              className="w-full bg-gray-100 outline-none"
+              placeholder="First Name"
+            />
+          </div>
+
+          <div>
+            <label className="block font-medium mb-1">Last Name</label>
+          </div>
+          <div className="bg-gray-100 p-2">
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              className="w-full bg-gray-100 outline-none"
+              placeholder="Last Name"
             />
           </div>
           
           <div>
-            <label className="block font-medium mb-1">Title</label>
+            <label className="block font-medium mb-1">Phone Number</label>
           </div>
-          <div className="bg-gray-50 p-2">
+          <div className="bg-gray-100 p-2">
             <input
               type="text"
-              name="title"
-              value={formData.title}
+              name="phoneNumber"
+              value={formData.phoneNumber}
               onChange={handleInputChange}
-              className="w-full bg-gray-50 outline-none"
-              placeholder="Title"
-              disabled
+              className="w-full bg-gray-100 outline-none"
+              placeholder="Phone Number"
             />
           </div>
           
-          <div>
-            <label className="block font-medium mb-1">Language</label>
-          </div>
-          <div className="bg-gray-50 p-2">
-            <input
-              type="text"
-              name="language"
-              value={formData.language}
-              onChange={handleInputChange}
-              className="w-full bg-gray-50 outline-none"
-              placeholder="Language"
-            />
-          </div>
+          
         </div>
         
         <div className="mt-8 flex justify-center">
