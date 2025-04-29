@@ -40,7 +40,9 @@ export default function Login() {
   }, [router]);
 
   const handleGoogleLogin = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URl}/api/account/google-signin`;
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
+   window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/account/google-signin`;
+   
   };
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
