@@ -166,6 +166,8 @@ const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
       });
       
       setProfile(response.data);
+    
+      localStorage.setItem('userId', response.data.id);
       setIsAuthenticated(true);
     } catch (err: any) {
       console.error('Auth check error:', err);
@@ -189,7 +191,7 @@ const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
       
       // Remove token from localStorage
       localStorage.removeItem('token');
-      
+      localStorage.removeItem('userId');
       // Dispatch the logout event before state changes
       // This helps prevent potential race conditions
       dispatchLogoutEvent();
@@ -274,10 +276,10 @@ const MyAccount = ({ toggleRightPanel }: MyAccountProps) => {
 
           <nav className="py-2">
             <Link 
-              href="/my-learning"
+              href="/userprofile"
               className="block px-4 py-2 text-black hover:bg-gray-100"
             >
-              My learning
+              My Profile
             </Link>
             <Link 
               href="/cart"

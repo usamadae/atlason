@@ -39,6 +39,9 @@ export default function Login() {
     }
   }, [router]);
 
+  const handleGoogleLogin = () => {
+    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_UR}/api/account/google-signin`;
+  };
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -89,10 +92,13 @@ export default function Login() {
     }
   };
 
-  const handleSocialLogin = (provider: string) => {
+ const handleSocialLogin = (provider: string) => {
+  if (provider === 'google') {
+    handleGoogleLogin();
+  } else {
     setError(`${provider} login is not yet integrated.`);
-  };
-
+  }
+};
   return (
     // Your JSX remains the same
     <div className="flex items-center justify-center px-4 md:px-8">
