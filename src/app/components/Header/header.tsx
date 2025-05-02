@@ -9,7 +9,7 @@ import HeaderIcon from "./HeaderIcon";
 import MyAccount from "./MyAccount";
 import { browseCategoriesWithSub } from "../../utils/api/browseCategory";
 import { GetServerSideProps } from "next";
-
+import GoogleTranslate from "./LanguageTranslator";
 
 // Fetch data on the server-side
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -111,6 +111,8 @@ const Header = ({ browsingCategory, categories }: HeaderProps) => {
               <div className="w-[50%] flex gap-x-5 items-center justify-end">
                 <HeaderIcon />
                 <MyAccount />
+                {/* <GoogleTranslate/> */}
+                
               </div>
             </div>
           )}

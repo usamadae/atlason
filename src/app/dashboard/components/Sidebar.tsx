@@ -1,14 +1,22 @@
-import React from "react";
-import Logo from "../../components/Header/logo";
+"use client";
+import { useState } from 'react';
 
-export default function Sidebar() {
+export default function Layout() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <aside className="w-64 bg-white shadow-lg flex flex-col py-2 px-5">
+    <div className="flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed z-50 top-0 left-0 h-full w-full bg-white shadow-lg flex flex-col py-2 px-10 transform transition-transform duration-300 ease-in-out
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 md:flex`}
+      >
+         <aside className="  flex flex-col py-2">
       <div className="px-4 py-4 h-full flex flex-col justify-between">
 
 
         <div className="mb-8">
-          <Logo />
+          {/* <Logo /> */}
           <h2 className="text-[16px] font-inter font-bold my-6">OVERVIEW</h2>
           <nav className="space-y-6">
             <a href="#" className="flex items-center text-sm">
@@ -65,7 +73,9 @@ export default function Sidebar() {
           </nav>
         </div>
 
-        <div className="mb-5">
+      </div>
+      
+      <div className="mb-5">
           <h2 className="text-[16px] font-inter font-bold my-6">SETTINGS</h2>
           <nav className="space-y-4">
             <a href="#" className="flex items-center text-sm">
@@ -82,7 +92,42 @@ export default function Sidebar() {
             </a>
           </nav>
         </div>
-      </div>
     </aside>
+    
+      </aside>
+
+      {/* Overlay for mobile when sidebar is open */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0  md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Page Content */}
+      <div className="flex-1 relative py-4 mt-6">
+      <div className="flex-1 absolute top-0 left-5 ">
+        {/* Menu Button for Mobile/Tablet */}
+        <button
+          className="md:hidden mb-4 px-4 py-2 bg-gray-800 text-white rounded"
+          onClick={() => setSidebarOpen(true)}
+        >
+           <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-6 h-6"
+          >
+            <path d="M3 12h18M3 6h18M3 18h18" />
+          </svg>
+        </button>
+        </div>
+        
+      </div>
+    </div>
   );
 }

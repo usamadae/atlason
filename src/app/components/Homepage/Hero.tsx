@@ -5,6 +5,7 @@ import Link from 'next/link';
 const Hero = () => {
     return (
         <div className="relative bg-[#3DB765] pt-16 pb-[60px] overflow-hidden">
+            
             {/* Curved bottom shape */}
             <div className="absolute xl:bottom-0 lg:bottom-[-50px] md:bottom-[-32px] bottom-[-1px] left-0 right-0">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" preserveAspectRatio="none" className="w-full h-32">

@@ -10,7 +10,7 @@ import Testimonial from "./components/Homepage/Testimonial";
 import FocusOnYourGoal from "./components/Homepage/FocusOnYourGoal";
 import StartLearning from "./components/Homepage/StartLearning";
 import LatestNews from "./components/Homepage/LatestNews";
-
+// import GoogleTranslate from './components/Homepage/GernalInstruction'; 
 export default function Home() {
   return (
     <>
@@ -23,6 +23,7 @@ export default function Home() {
       <FocusOnYourGoal />
       <StartLearning />
       <LatestNews />
+      {/* <GoogleTranslate/> */}
     </>
   );
 }

@@ -43,8 +43,8 @@ export default function Recommendations({ data }: { data: Recommendation[] }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
         {visibleRecommendations.map((course) => (
           <div key={course.id} className="bg-white p-4 rounded ">
-            <div className="flex items-center gap-4">
-              <div className="w-24 flex-shrink-0">
+            <div className="flex items-center gap-4 flex-col md:flex-row">
+              <div className="sm:w-24 w-full  flex-shrink-0">
                 <img
                   src={course.imageUrl}
                   alt={course.title}

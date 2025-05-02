@@ -1,28 +1,49 @@
-// app/dashboard/components/ProfileCard.tsx
+'use client';
+
+import { useState } from 'react';
 import { User } from "../../types";
-import Image from "next/image";
 
 export default function ProfileCard({ user }: { user: User }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
+    <>
+      {/* Toggle Button for mobile */}
+      {/* Button to toggle profile */}
+      <button
+        className="fixed bottom-4 right-4 z-50 bg-green-700 text-white p-2 rounded-full shadow-lg sm:block md:block lg:hidden"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? 'Close' : 'Profile'}
+      </button>
 
-    <aside className="w-72 shadow-lg py-7 px-7" style={{ backgroundColor: '#F7F7F7' }}>
-      <div className="flex justify-between">
-        <p className="font-bold text-black">Your Profie</p> <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-            <path d="M11.6665 4.23405C11.6665 3.31738 10.9165 2.56738 9.99984 2.56738C9.08317 2.56738 8.33317 3.31738 8.33317 4.23405C8.33317 5.15072 9.08317 5.90072 9.99984 5.90072C10.9165 5.90072 11.6665 5.15072 11.6665 4.23405Z" stroke="black" stroke-width="1.5" />
-            <path d="M11.6665 15.901C11.6665 14.9844 10.9165 14.2344 9.99984 14.2344C9.08317 14.2344 8.33317 14.9844 8.33317 15.901C8.33317 16.8177 9.08317 17.5677 9.99984 17.5677C10.9165 17.5677 11.6665 16.8177 11.6665 15.901Z" stroke="black" stroke-width="1.5" />
-            <path d="M11.6665 10.0671C11.6665 9.15039 10.9165 8.40039 9.99984 8.40039C9.08317 8.40039 8.33317 9.15039 8.33317 10.0671C8.33317 10.9837 9.08317 11.7337 9.99984 11.7337C10.9165 11.7337 11.6665 10.9837 11.6665 10.0671Z" stroke="black" stroke-width="1.5" />
-          </svg>
-        </p>
-      </div>
-      <button className="bg-green-600 text-white p-2 m-auto align-center block rounded-lg my-4 w-full font-inter font-800 text-[16px] " >  Become Instuctor </button>
-      {/* <img src={user.avatar} alt={user.name} className="w-20 h-20 rounded-full mx-auto mb-2" /> */}
-      <img src='/images/prof.png' alt={user.name} className="w-32 h-32 rounded-full mx-auto mb-2" />
-      <h4 className="text-center font-bold text-lg">{user.name}</h4>
-      <p className="text-center text-sm text-black-600 mb-4">{user.role}</p>
+      {/* Sidebar Wrapper */}
+      <aside
+        className={`fixed top-0 right-0 h-full w-72 z-40 transform transition-transform duration-300 ease-in-out bg-[#F7F7F7] shadow-lg py-7 px-7
+         transition-all duration-300 ${isOpen ? 'block' : 'hidden'} 
+          md:fixed md:translate-x-0 lg:relative lg:block overflow-y-auto`}
+      >
+        <div className="flex justify-between mb-4 ">
+          <p className="font-bold text-black">Your Profile</p>
+          <button className="lg:hidden" onClick={() => setIsOpen(false)}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+              <path d="M11.6665 4.23405C11.6665 3.31738 10.9165 2.56738 9.99984 2.56738C9.08317 2.56738 8.33317 3.31738 8.33317 4.23405C8.33317 5.15072 9.08317 5.90072 9.99984 5.90072C10.9165 5.90072 11.6665 5.15072 11.6665 4.23405Z" stroke="black" strokeWidth="1.5" />
+              <path d="M11.6665 15.901C11.6665 14.9844 10.9165 14.2344 9.99984 14.2344C9.08317 14.2344 8.33317 14.9844 8.33317 15.901C8.33317 16.8177 9.08317 17.5677 9.99984 17.5677C10.9165 17.5677 11.6665 16.8177 11.6665 15.901Z" stroke="black" strokeWidth="1.5" />
+              <path d="M11.6665 10.0671C11.6665 9.15039 10.9165 8.40039 9.99984 8.40039C9.08317 8.40039 8.33317 9.15039 8.33317 10.0671C8.33317 10.9837 9.08317 11.7337 9.99984 11.7337C10.9165 11.7337 11.6665 10.9837 11.6665 10.0671Z" stroke="black" strokeWidth="1.5" />
+            </svg>
+          </button>
+          
+        </div>
 
+        <button className="bg-green-600 text-white p-2 m-auto block rounded-lg my-4 w-full font-bold text-[16px]">
+          Become Instructor
+        </button>
 
-      <div className="my-10 flex justify-evenly align-center">
+        <img src='/images/prof.png' alt={user.name} className="w-32 h-32 rounded-full mx-auto mb-2" />
+        <h4 className="text-center font-bold text-lg">{user.name}</h4>
+        <p className="text-center text-sm text-black-600 mb-4">{user.role}</p>
+
+        <div className="my-10 flex justify-evenly align-center">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41" fill="none">
             <rect x="0.5" y="1.20312" width="39" height="39" rx="19.5" stroke="black" />
@@ -97,7 +118,7 @@ export default function ProfileCard({ user }: { user: User }) {
                 </div>
               </div>
               {/* <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${course.progress}%` }}></div>
+              <div className="bg-blue-500 h-2 rounded-full" style={{ width: ${course.progress}% }}></div>
             </div> */}
 
             </div>
@@ -106,6 +127,15 @@ export default function ProfileCard({ user }: { user: User }) {
         </div>
         <button className="text-green-600 text-center block m-auto my-2"> See All</button>
       </div>
-    </aside>
+      </aside>
+
+      {/* Overlay on mobile when open */}
+      {isOpen && (
+        <div
+          className="fixed md:scroll"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+    </>
   );
 }

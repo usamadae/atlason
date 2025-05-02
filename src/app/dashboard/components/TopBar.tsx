@@ -28,8 +28,8 @@ export default function TopBar() {
   };
 
   return (
-    <div className="flex items-center gap-2 mb-4">
-      <div className="flex items-center w-full bg-white rounded-lg px-4 py-2 shadow-sm">
+    <div className="flex items-center justify-end  gap-2 mb-4 xs:mb-0 sm:mb-0">
+      <div className="flex items-center   w-[60%] sm:w-[80%] lg:w-[100%] bg-white rounded-lg px-4 py-2 shadow-sm">
 
         <svg className="mr-4" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.66659 14.4587C11.1644 14.4587 13.9999 11.6231 13.9999 8.12533C13.9999 4.62752 11.1644 1.79199 7.66659 1.79199C4.16878 1.79199 1.33325 4.62752 1.33325 8.12533C1.33325 11.6231 4.16878 14.4587 7.66659 14.4587Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
