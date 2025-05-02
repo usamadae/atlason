@@ -55,7 +55,11 @@ export default function Login() {
       });
       
       // Store the token in localStorage
-      localStorage.setItem('token', response.data.token);
+    
+      
+      localStorage.setItem('UserId', response.data.id);
+      localStorage.setItem('UserName', response.data.completeName);
+      localStorage.setItem('Email', response.data.email);
       
       // Handle "Remember Me" functionality
       if (rememberMe) {

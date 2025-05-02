@@ -22,7 +22,7 @@ export const checkAndRestoreSession = () => {
 
 export const logout = () => {
   // Clear token and other auth-related data
-  localStorage.removeItem('token');
+  // localStorage.removeItem('token');
   
   // You can keep the remembered email if you want
   // localStorage.removeItem('rememberedEmail');

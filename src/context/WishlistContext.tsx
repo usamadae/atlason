@@ -80,7 +80,9 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
 
   const addToWishlist = async (course: Course) => {
     try {
-      const userId = localStorage.getItem('userId');
+      const userId = localStorage.getItem('UserId');
+      const UserName = localStorage.getItem('UserName');
+      
       
       if (!userId) {
         toast.error('You need to log in to add items to your wishlist');
@@ -103,9 +105,9 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
       const response = await axiosInstance.post('/api/WishList/CreateWishList', {
         userId: userId,
         courseId: courseId,
-        createdBy: userId,
+        createdBy: UserName,
         createdOn: new Date().toISOString(),
-        lastModifiedBy: userId,
+        lastModifiedBy: UserName,
         lastModifiedOn: new Date().toISOString(),
         wishListId: 0  // Backend will assign the actual ID
       });

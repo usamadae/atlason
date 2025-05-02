@@ -91,12 +91,12 @@ const RecommendedCourses = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {courses.map((course) => (
                     <div key={course.id} className="bg-white rounded-lg shadow-sm border border-gray-100 flex overflow-hidden p-[20px]">
-                        <div className="relative md:w-40 w-[40%] xl:h-40 h-full flex-shrink-0">
+                        <div className="relative md:w-40 w-[40%] xl:h-40 h-full flex-shrink-0 ">
                             <Image
                                 src={course.image}
                                 alt={course.title}
                                 fill
-                                className="object-cover"
+                                className="object-cover "
                             />
                         </div>
                         <div className="p-4 flex flex-col flex-grow">
@@ -116,7 +116,7 @@ const RecommendedCourses = () => {
 
                             <div className="flex items-center justify-between">
                                 <div className='flex items-center'>
-                                    <div className="w-6 h-6 rounded-full bg-gray-300 overflow-hidden relative mr-2">
+                                    <div className="w-6 h-6 rounded-full bg-gray-300 overflow-hidden relative mr-2 rounded-lg">
                                         <Image
                                             src={course.instructorImage}
                                             alt={course.instructor}

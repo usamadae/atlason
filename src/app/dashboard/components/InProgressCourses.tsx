@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { Course } from "../../types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from 'next/image';
+
 
 export default function InProgressCourses({ courses }: { courses: Course[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,17 +43,25 @@ export default function InProgressCourses({ courses }: { courses: Course[] }) {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {visibleCourses.map((course) => (
-          <div key={course.id} className="bg-white rounded-lg overflow-hidden shadow">
+          <div key={course.id} className="bg-white  overflow-hidden shadow rounded-3xl">
             <div className="bg-gray-900 h-32 relative">
               <img src={course.imageUrl} alt={course.title} className="w-full h-full object-cover" />
-              <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-                LOREM
-              </div>
+              
             </div>
             
             <div className="p-4">
-              <h4 className="font-bold text-sm mb-4">{course.title}</h4>
-              
+            <div className="  bg-green-100 text-green-900   text-[10px]  px-2 py-1 text-center  rounded-lg w-24">
+                LOREM
+              </div>
+              <h4 className="text-[14px] text-sm mt-2  mb-2" style={{ color: '#000000', fontWeight: '500' } }> {course.title}</h4>
+              <div className="w-full bg-gray-300 h-2 rounded-full">
+            <div
+              className="bg-green-600 h-2 rounded-full"
+              style={{ width: `${course.progress}%` }}
+            ></div>
+          </div>
+
+
               <div className="flex items-center mt-4">
                 <div className="w-8 h-8 rounded-full overflow-hidden mr-3">
                   <img 
@@ -63,7 +71,7 @@ export default function InProgressCourses({ courses }: { courses: Course[] }) {
                   />
                 </div>
                 <div>
-                  <p className="font-medium text-xs">Good Morning {course.instructor}</p>
+                  <p className="font-medium text-xs">{course.instructor}</p>
                   <p className="text-xs text-gray-500">Software Developer</p>
                 </div>
               </div>

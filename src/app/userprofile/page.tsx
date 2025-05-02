@@ -65,22 +65,17 @@ export default function UserProfile() {
   }, []);
 
   const fetchProfileData = async () => {
-    const token = localStorage.getItem('token');
+    const UserId = localStorage.getItem('UserId');
     
-    if (!token) {
+    if (!UserId) {
       router.push('/login');
       return;
     }
 
     setIsLoading(true);
     try {
-      const response = await axios.get('/api/Account/MyProfile', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      const response = await axios.get('/api/Account/MyProfile');
       setProfile(response.data);
-      
       // Initialize form data with profile data
       setFormData({
         username: response.data.completeName?.split(' ')[0] || '',
@@ -96,9 +91,9 @@ export default function UserProfile() {
       console.error('Profile fetch error:', err);
       setError(err.response?.data?.message || 'Failed to load profile');
       
-      // If token is invalid or expired, redirect to login
+      // If UserId is invalid or expired, redirect to login
       if (err.response?.status === 401) {
-        localStorage.removeItem('token');
+        localStorage.removeItem('UserId');
         router.push('/login');
       }
     } finally {
@@ -117,8 +112,8 @@ export default function UserProfile() {
 
 // Then modify the handleSave function:
 const handleSave = async () => {
-  const token = localStorage.getItem('token');
-  if (!token || !profile) return;
+  const UserId = localStorage.getItem('UserId');
+  if (!UserId || !profile) return;
 
   setIsSaving(true);
   setError('');
@@ -139,7 +134,7 @@ const handleSave = async () => {
     
     await axios.post('/api/Account/updateUser', updateData, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${UserId}`,
         'Content-Type': 'application/json'
       }
     });

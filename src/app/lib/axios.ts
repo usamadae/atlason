@@ -5,42 +5,10 @@ const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
-let isAuthenticating = false;
-
+// No token handling or auth logic
 axiosInstance.interceptors.request.use(
-  async (config) => {
-    if (typeof window === "undefined") return config;
-
-    let token = localStorage.getItem("token");
-
-    if (!token && !isAuthenticating) {
-      isAuthenticating = true;
-
-      try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/login`,
-          {
-            username: process.env.API_USERNAME,
-            password: process.env.API_PASSWORD,
-          }
-        );
-
-        token = response?.data?.data?.token;
-
-        if (token) {
-          localStorage.setItem("token", token);
-        }
-      } catch (error) {
-        console.error("Login failed:", error);
-      } finally {
-        isAuthenticating = false;
-      }
-    }
-
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
+  (config) => {
+    // No token setting
     return config;
   },
   (error) => Promise.reject(error)
