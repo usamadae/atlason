@@ -57,7 +57,7 @@ export const fetchDashboardData = async () => {
     recommendations: [
       {
         id: "1",
-        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+        title: "Lorem Ipsum is simply dummy text of the printing  industry ",
         instructor: "Kevin Gilbert",
         status: "open",
         imageUrl: "/images/slidedummy.png",
@@ -69,7 +69,7 @@ export const fetchDashboardData = async () => {
       },
       {
         id: "2",
-        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+        title: "Lorem Ipsum is simply dummy text of the printing industry",
         instructor: "Kevin Gilbert",
         status: "open",
         imageUrl: "/images/slidedummy.png",
@@ -81,7 +81,7 @@ export const fetchDashboardData = async () => {
       },
       {
         id: "3",
-        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+        title: "Lorem Ipsum is simply dummy text of the printing  industry",
         instructor: "Kevin Gilbert",
         status: "open",
         imageUrl: "/images/slidedummy.png",
@@ -93,7 +93,7 @@ export const fetchDashboardData = async () => {
       },
       {
         id: "4",
-        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+        title: "Lorem Ipsum is simply dummy text of the printing  industry",
         instructor: "Kevin Gilbert",
         status: "open",
         imageUrl: "/images/slidedummy.png",

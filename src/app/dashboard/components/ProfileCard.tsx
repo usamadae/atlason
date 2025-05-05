@@ -19,7 +19,7 @@ export default function ProfileCard({ user }: { user: User }) {
 
       {/* Sidebar Wrapper */}
       <aside
-        className={`fixed top-0 right-0 h-full w-72 z-40 transform transition-transform duration-300 ease-in-out bg-[#F7F7F7] shadow-lg py-7 px-7
+        className={`fixed top-0 right-0 h-full w-62 z-40 transform transition-transform duration-300 ease-in-out bg-[#F7F7F7] shadow-lg py-7 px-4
          transition-all duration-300 ${isOpen ? 'block' : 'hidden'} 
           md:fixed md:translate-x-0 lg:relative lg:block overflow-y-auto`}
       >
@@ -110,11 +110,11 @@ export default function ProfileCard({ user }: { user: User }) {
             <div key={course.id} className="text-sm mb-2 bg-white ">
               <div className="flex justify-center align-center border-b border-black border-b-gray-500 py-3 ">
                 <div className="w-[20%] flex align-center justify-center ">
-                  <img src='/images/dummmy.png' alt={user.name} className="w-8 h-8 rounded-full mx-auto mb-2 self-center" />
+                  <img src='/images/dummmy.png' alt={user.name} className="w-8 h-8 rounded-full mx-auto  self-center" />
                 </div>
-                <div className="w-[80%]">
-                  <p className="text-[12px] font-medium" >{course.title}</p>
-                  <p className="text-[12px] " >{course.instructor}</p>
+                <div className="w-[80%] flex justify-center items-start flex-col">
+                  <p className="text-[10px] font-medium" >{course.title}</p>
+                  <p className="text-[8px] " >{course.instructor}</p>
                 </div>
               </div>
               {/* <div className="w-full bg-gray-200 rounded-full h-2">

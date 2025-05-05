@@ -42,26 +42,26 @@ export default function Recommendations({ data }: { data: Recommendation[] }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
         {visibleRecommendations.map((course) => (
-          <div key={course.id} className="bg-white p-4 rounded ">
-            <div className="flex items-center gap-4 flex-col md:flex-row">
-              <div className="sm:w-24 w-full  flex-shrink-0">
+          <div key={course.id} className="bg-white p-2 rounded ">
+            <div className="flex items-center justify-start gap-2 flex-col md:flex-row">
+              <div className="sm:w-24 md:w-1/3   flex-shrink-0">
                 <img
                   src={course.imageUrl}
                   alt={course.title}
-                  className="w-full h-32 object-cover rounded-xl mb-2"
+                  className="w-full h-[100px] object-cover rounded-xl "
                 />
               </div>
               <div className="flex flex-col justify-between">
-                <h4 className="font-bold text-sm mb-1 ">{course.title}</h4>
+                <h4 className="font-medium text-[12px] mb-1 ">{course.title}</h4>
                 <div className='flex justify-between item-center'>
                   <div className='flex justify-center item-center'>
                 <img
                   src='/images/Photo.png'
                   alt={course.title}
-                  className="w-8 h-8 object-cover rounded-xl  self-center"
+                  className="w-5 h-5 object-cover rounded-xl  self-center"
                 />
 
-                <p className="text-xs text-black-600 self-center">By {course.instructor}</p>
+                <p className="text-[10px] text-xs text-black-600 self-center">By {course.instructor}</p>
                 </div>
                 <p className="text-xs self-center">⭐ {course.rating} ({course.students})</p>
                 </div>
@@ -74,7 +74,7 @@ export default function Recommendations({ data }: { data: Recommendation[] }) {
                                         <path d="M3.30286 17.6975C4.07126 16.3675 5.17615 15.2631 6.50652 14.4953C7.83688 13.7274 9.34588 13.3232 10.8819 13.3232C12.418 13.3233 13.927 13.7275 15.2573 14.4953C16.5877 15.2632 17.6925 16.3676 18.4609 17.6977" stroke="#3DB765" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
 
-                                    <span className="ml-1 font-inter text-[12px] font-medium text-black"><span className='font-semibold'>{course.students}</span> students</span>
+                                    <span className="ml-1 font-inter text-[10px] font-medium text-black"><span className='font-normal'>{course.students}</span> students</span>
                                 </div>
 
                                 <div className="flex items-center ">
@@ -86,7 +86,7 @@ export default function Recommendations({ data }: { data: Recommendation[] }) {
                                         <path d="M5.88184 17.4896V14.1562" stroke="#3DB765" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
 
-                                    <span className="ml-1 font-inter text-[12px] font-medium text-black">{course.level}</span>
+                                    <span className="ml-1 font-inter text-[10px] font-normal text-black">{course.level}</span>
                                 </div>
 
                                 <div className="flex items-center">
@@ -97,7 +97,7 @@ export default function Recommendations({ data }: { data: Recommendation[] }) {
                                         <path d="M10.8818 6.44824V10.8232H15.2568" stroke="#3DB765" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
 
-                                    <span className="ml-1 font-inter text-[12px] font-medium text-black">{course.duration}</span>
+                                    <span className="ml-1 font-inter text-[10px] font-normal text-black">{course.duration}</span>
                                 </div>
                             </div>
               </div>

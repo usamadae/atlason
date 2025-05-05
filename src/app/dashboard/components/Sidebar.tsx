@@ -1,6 +1,6 @@
 "use client";
 import { useState } from 'react';
-
+import Logo from '../../components/Header/logo';
 export default function Layout() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -8,17 +8,17 @@ export default function Layout() {
     <div className="flex">
       {/* Sidebar */}
       <aside
-        className={`fixed z-50 top-0 left-0 h-full w-full bg-white shadow-lg flex flex-col py-2 px-10 transform transition-transform duration-300 ease-in-out
+        className={`fixed z-50 top-0 left-0 h-full max-w-62 bg-white shadow-lg flex flex-col py-2 px-5 transform transition-transform duration-300 ease-in-out
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 md:flex`}
       >
-         <aside className="  flex flex-col py-2">
-      <div className="px-4 py-4 h-full flex flex-col justify-between">
+         <aside className="    flex flex-col h-full py-2 flex flex-col justify-between  align-between">
+      <div className="px-2 py-4 h-full flex flex-col justify-between">
 
 
-        <div className="mb-8">
-          {/* <Logo /> */}
-          <h2 className="text-[16px] font-inter font-bold my-6">OVERVIEW</h2>
-          <nav className="space-y-6">
+        <div className="mb-8 flex justify-center items-center flex-col">
+          <Logo />
+          <h2 className="text-[16px] font-inter font-bold my-6 ">OVERVIEW</h2>
+          <nav className="space-y-6 ">
             <a href="#" className="flex items-center text-sm">
 
 
@@ -27,7 +27,7 @@ export default function Layout() {
                 <path d="M6.71343 2.44761L2.09343 6.14761C1.57343 6.56094 1.2401 7.43427 1.35343 8.08761L2.2401 13.3943C2.4001 14.3409 3.30676 15.1076 4.26676 15.1076H11.7334C12.6868 15.1076 13.6001 14.3343 13.7601 13.3943L14.6468 8.08761C14.7534 7.43427 14.4201 6.56094 13.9068 6.14761L9.28676 2.45427C8.57343 1.88094 7.4201 1.88094 6.71343 2.44761Z" stroke="#3DB765" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
 
-              <span className="text-[16px] font-inter font-semibold text-[#3DB765]">Dashboard</span>
+              <span className="text-[16px] font-inter font-medium text-[#3DB765]">Dashboard</span>
             </a>
             <a href="#" className="flex items-center text-sm group ">
               <svg className="w-5 h-5 mr-3" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@ export default function Layout() {
                 <path d="M4.66659 3.32031C2.30659 3.66698 1.33325 5.05365 1.33325 7.90031V10.567C1.33325 13.9003 2.66659 15.2336 5.99992 15.2336H9.99992C13.3333 15.2336 14.6666 13.9003 14.6666 10.567V7.90031C14.6666 5.05365 13.6933 3.66698 11.3333 3.32031" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
 
-              <span className="text-[16px] font-inter font-semibold hover:text-[#3DB765]">Inbox</span>
+              <span className="text-[16px] font-inter font-medium hover:text-[#3DB765]">Inbox</span>
             </a>
             <a href="#" className="flex items-center text-sm">
               <svg className="w-5 h-5 mr-3" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@ export default function Layout() {
                 <path d="M6.28662 11.9004H9.71329" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
 
-              <span className="text-[16px] font-inter font-semibold hover:text-[#3DB765]">Lesson</span>
+              <span className="text-[16px] font-inter font-medium hover:text-[#3DB765]">Lesson</span>
             </a>
             <a href="#" className="flex items-center text-sm">
               <svg className="w-5 h-5 mr-3" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ export default function Layout() {
                 <path d="M4.25342 11.1543L4.75342 11.6543L6.25342 10.1543" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M5.99992 15.2337H9.99992C13.3333 15.2337 14.6666 13.9004 14.6666 10.5671V6.56706C14.6666 3.23372 13.3333 1.90039 9.99992 1.90039H5.99992C2.66659 1.90039 1.33325 3.23372 1.33325 6.56706V10.5671C1.33325 13.9004 2.66659 15.2337 5.99992 15.2337Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-              <span className="text-[16px] font-inter font-semibold hover:text-[#3DB765]">Task</span>
+              <span className="text-[16px] font-inter font-medium hover:text-[#3DB765]">Task</span>
             </a>
             <a href="#" className="flex items-center text-sm">
               <svg className="w-5 h-5 mr-3" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,27 +68,27 @@ export default function Layout() {
                 <path d="M6.05998 12.4206C5.11998 13.0473 5.11998 14.074 6.05998 14.7006C7.12665 15.414 8.87331 15.414 9.93998 14.7006C10.88 14.074 10.88 13.0473 9.93998 12.4206C8.87998 11.714 7.12665 11.714 6.05998 12.4206Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
 
-              <span className="text-[16px] font-inter font-semibold hover:text-[#3DB765]">Group</span>
+              <span className="text-[16px] font-inter font-medium hover:text-[#3DB765]">Group</span>
             </a>
           </nav>
         </div>
 
       </div>
       
-      <div className="mb-5">
-          <h2 className="text-[16px] font-inter font-bold my-6">SETTINGS</h2>
-          <nav className="space-y-4">
-            <a href="#" className="flex items-center text-sm">
+      <div className="mb-5 flex justify-center items-center flex-col">
+          <h2 className="text-[16px] font-inter font-bold my-6 ">SETTINGS</h2>
+          <nav className="space-y-6 ">
+            <a href="#" className="flex items-center text-sm font-medium">
               <svg className="w-5 h-5 mr-3 " viewBox="0 0 24 24" fill="currentColor">
                 <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
               </svg>
-              <span className="text-[16px] font-inter font-semibold hover:text-[#3DB765]">Settings</span>
+              <span className="text-[16px] font-inter font-medium hover:text-[#3DB765] font-medium">Settings</span>
             </a>
-            <a href="#" className="flex items-center text-sm text-red-500">
+            <a href="#" className="flex items-center text-sm text-red-500 font-medium">
               <svg className="w-5 h-5 mr-3 text-red-500" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" />
               </svg>
-              <span className="text-[16px] font-inter font-semibold">Logout</span>
+              <span className="text-[16px] font-inter font-medium">Logout</span>
             </a>
           </nav>
         </div>
