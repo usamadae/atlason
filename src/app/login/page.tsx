@@ -1,4 +1,6 @@
 // src/app/login/page.tsx
+// testtytytyer@gmail.com
+// test123@TT
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -57,9 +59,22 @@ export default function Login() {
       // Store the token in localStorage
     
       
-      localStorage.setItem('UserId', response.data.id);
-      localStorage.setItem('UserName', response.data.completeName);
-      localStorage.setItem('Email', response.data.email);
+  // Store user info
+localStorage.setItem('UserId', response.data.id);
+localStorage.setItem('UserName', response.data.completeName);
+localStorage.setItem('Email', response.data.email);
+
+// Store role info
+if (response.data.roles && response.data.roles.length > 0) {
+  localStorage.setItem('RoleName', response.data.roles[0].name);
+  localStorage.setItem('RoleDescription', response.data.roles[0].description || '');
+  localStorage.setItem('RoleDescription', response.data.roles[0].normalizedName || '');
+} else {
+  localStorage.setItem('RoleName', 'N/A');
+  localStorage.setItem('RoleDescription', '');
+  localStorage.setItem('normalizedName', '');
+}
+
       
       // Handle "Remember Me" functionality
       if (rememberMe) {
